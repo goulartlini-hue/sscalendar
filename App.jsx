@@ -741,9 +741,7 @@ if (view !== "calendar") {
   );
 }
 
-</div>
-  );
-}
+
   // 2. Day selected → show day view
   if (selectedDay !== null) {
     return (
