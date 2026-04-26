@@ -702,6 +702,7 @@ function FeedView({ year, month, username, storiesMap, onSelectDay, onPrevMonth,
 // ─── App ─────────────────────────────────────────────────────────────────────
 
 export default function App() {
+  const [view, setView] = useState("today");
   const now = new Date();
 
   // Username: read once from localStorage on mount — never asks again if stored
@@ -726,7 +727,23 @@ export default function App() {
 
   // 1. No username → show name gate
   if (!username) return <NameGate onConfirm={handleConfirmName} />;
+const today = new Date();
 
+if (view !== "calendar") {
+  return (
+    <DayView
+      year={today.getFullYear()}
+      month={today.getMonth()}
+      day={today.getDate()}
+      username={username}
+      onBack={() => setView("calendar")}
+    />
+  );
+}
+
+</div>
+  );
+}
   // 2. Day selected → show day view
   if (selectedDay !== null) {
     return (
